@@ -3,7 +3,9 @@ The smart contract is designed to create voting with a list of candidates, with 
 
 
 hardhat tasks:
-1)You can create new vote (only for owner)
+
+1)You can create new vote (only for owner)  
+
 npx hardhat newvote --account `private_key` --votename `"project name"` --comment `"some information"` --network rinkeby
 
 2)You can create new project in vote (only for owner)
