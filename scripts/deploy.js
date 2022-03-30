@@ -22,12 +22,3 @@ main()
     console.error(error);
     process.exit(1);
   });
-  // const dep = await donat.connect(owner).NewVotes('vote1', "Networks cup");
-  //     const receipt = await dep.wait()
-  //     const data = receipt.logs[0].data
-  //     const [_name, _Voteifo , campaignID] = ethers.utils.defaultAbiCoder.decode(
-  //       ['string','uint256', 'uint256'], data)
-      // console.log(`Successful deposit of ${_name.toString()}`)
-
-      // await donat.connect(owner).makeProject(1, "proj1" , "0xe3712A59911bdB17fA9149114C4778474D633446" , "Test project to now information")
-      // await donat.connect(owner).makeProject(1, "proj2" , "0xe3712A59911bdB17fA9149114C4778474D633446" , "Test project to now information2")
