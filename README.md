@@ -28,10 +28,10 @@ npx hardhat getwinnerinform --account `private_key`  --votenum `Num of vooting` 
 npx hardhat getcommissionbalance --account `private_key`  --network rinkeby
 
 9)You can transfer commision (only for owner)
-npx hardhat getcommission --account `private_key` --address `address to withdraw winning sum` --amount `amount to withdraw (ether)` --network rinkeby
+`npx hardhat getcommission --account "private_key" --address "address to withdraw winning sum" --amount "amount to withdraw (ether)" --network rinkeby`
 
-10)You can get votes count total
-<npx hardhat getvotesсount --account `private_key`  --network rinkeby>
+10)You can get votes count total `/n`
+`npx hardhat getvotesсount --account `private_key`  --network rinkeby>`
 
 
 
