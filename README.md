@@ -67,7 +67,7 @@ Add the following code only if you are using solidity < 0.8!!!"
 
 About revertedWith 
 
-Работает врено, испраил с помощью (https://github.com/TrueFiEng/Waffle/pull/627/commits/1b9411697daba22464e63b1a3f740a7f51dd32f2)
+Работает верно, исправил с помощью (https://github.com/TrueFiEng/Waffle/pull/627/commits/1b9411697daba22464e63b1a3f740a7f51dd32f2)
 
 About soldity:
 
