@@ -1,4 +1,4 @@
-const hre  = require("hardhat");
+const hre = require("hardhat");
 const ethers = hre.ethers;
 // When running the script with `npx hardhat run <script>` you'll find the Hardhat
 // Runtime Environment's members available in the global scope.
@@ -8,10 +8,10 @@ async function main() {
 
   console.log("Account balance:", (await signer.getBalance()).toString());
 
-  const CrowdFunding = await ethers.getContractFactory("CrowdFunding", signer);
-  const Crowdfunding = await CrowdFunding.deploy();
-  await Crowdfunding.deployed();
-  console.log("Greeter deployed to:", Crowdfunding.address);
+  const VotingContract = await ethers.getContractFactory("VotingContract", signer);
+  const Votingcontract = await VotingContract.deploy();
+  await Votingcontract.deployed();
+  console.log("Votingcontract deployed to:", Votingcontract.address);
 }
 
 // We recommend this pattern to be able to use async/await everywhere

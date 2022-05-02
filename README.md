@@ -5,33 +5,33 @@ The smart contract is designed to create voting with a list of candidates, with 
 
 hardhat tasks: 
 
-1)You can create new vote (only for owner)  comment - stirng
+1)You can create new vote (only for owner) 
 
-`npx hardhat newvote --account private_key --votename "project name" --comment "some information" --network rinkeby`
+`npx hardhat createvoting --account private_key -votingname "Name of Voting" --comment "Some information" --network rinkeby`
 
-2)You can create new project in vote (only for owner)
+2)You can create new candidate in vote (only for owner)
 
-`npx hardhat makeproject --account private_key  --votenum Num of vooting --name project name --accountwith "address to withdraw winning sum" --comment "some information `about project" --network rinkeby
+`npx hardhat createcandidate --account private_key  --accountwith "address to withdraw winning sum" -votingname "Name of Voting" -candidatename "Name of Candidate" --comment "some information about project" --network rinkeby`
 
 3)You can support project (price 0.01 ether)
 
-`npx hardhat supportroject --account private_key  --votenum "Num of vooting" --projectnum "Num of project" --network rinkeby`
+`npx hardhat supportcandidate --account private_key  --votingname "Name of Voting" -candidatename "Name of Candidate" --network rinkeby`
 
-4)You can get vote information 
+4)You can get information what votes are there
 
-`npx hardhat getvotesinformation --account private_key  --votenum "Num of vooting"  --network rinkeby`
+`npx hardhat getvotings --account private_key  --network rinkeby`
 
-5)You can get projects count total
+5)You can get information about Candidates
 
-`npx hardhat getprojectcount --account private_key  --votenum "Num of vooting"  --network rinkeby`
+`npx hardhat getinformationaboutvoting --account private_key --votingname "Name of Voting" --network rinkeby  `
 
 6)You can finish vote (after 3 days of project start)
 
-`npx hardhat finishvote --account private_key  --votenum "Num of vooting"  --network rinkeby`
+`npx hardhat finishvote --account private_key  --votingname "Name of Voting"  --network rinkeby`
 
 7)You can get information about winner
 
-`npx hardhat getwinnerinform --account private_key  --votenum "Num of vooting"  --network rinkeby`
+`npx hardhat getwinnerinform --account private_key  --votingname "Name of Voting"  --network rinkeby`
 
 8)You can get comission balance
 
@@ -39,11 +39,8 @@ hardhat tasks:
 
 9)You can transfer commision (only for owner)
 
-`npx hardhat getcommission --account private_key --address "address to withdraw winning sum" --amount "amount to withdraw (ether)" --network rinkeby`
+`npx hardhat transfercommission --account private_key --address "address to withdraw winning sum" --amount "amount to withdraw (ether)" --network rinkeby`
 
-10)You can get votes count total /n
-
-`npx hardhat getvotesсount --account private_key  --network rinkeby>`
 
 
 
@@ -71,7 +68,7 @@ About revertedWith
 
 About soldity:
 
-If i take version 0.8.10 i get an error:
+If i take version 0.8.10 i get an warning:
 
 Solidity 0.8.10 is not fully supported yet. You can still use Hardhat, but some features, like stack traces, might not work correctly.
 
