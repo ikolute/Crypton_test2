@@ -152,6 +152,7 @@ describe("CrowdFunding contract", function () {
       await expect(VotingInform[0][0]).to.be.equal('proj1')
       await expect(VotingInform[1][0]).to.be.equal('Test project information')
       await expect(ethers.utils.formatEther((VotingInform[2][0]))).to.be.equal('0.01')
+      await expect(VotingInform[4]).to.be.equal('Networks cup')
 
       await expect(VotingInform[0][1]).to.be.equal('proj2')
       await expect(VotingInform[1][1]).to.be.equal('2 Test project information')
@@ -302,30 +303,53 @@ describe("CrowdFunding contract", function () {
     });
   });
   describe("getWinnerinform", function () {
-  it("Shouldnt return correct informayion about Winner", async function () {
-    await VotingContract.connect(owner).CreateVoting('vote1', "Networks cup");
-    
-    const v1 = await VotingContract.connect(owner).CreateCandidate('vote1', "proj1", "Test project information", addr5.address);
-    const v2 =await VotingContract.connect(owner).CreateCandidate('vote1', "proj2", "2 Test project information", addr6.address);
-    const v3 =await VotingContract.connect(owner).CreateCandidate('vote1', "proj3", "3 Test project information", addr7.address);
+    it("Shouldnt return correct information about Winner", async function () {
+        await VotingContract.connect(owner).CreateVoting('vote1', "Networks cup");
+        
+        const v1 = await VotingContract.connect(owner).CreateCandidate('vote1', "proj1", "Test project information", addr5.address);
+        const v2 =await VotingContract.connect(owner).CreateCandidate('vote1', "proj2", "2 Test project information", addr6.address);
+        const v3 =await VotingContract.connect(owner).CreateCandidate('vote1', "proj3", "3 Test project information", addr7.address);
 
-    const textSend = {
-      value: ethers.utils.parseEther('0.01')
-    }
-    await VotingContract.connect(addr1).SupportCandidate("vote1", "proj1", textSend)
-    await VotingContract.connect(addr2).SupportCandidate("vote1", "proj2", textSend)
-    await VotingContract.connect(addr3).SupportCandidate("vote1", "proj3", textSend)
-    await VotingContract.connect(addr4).SupportCandidate("vote1", "proj2", textSend)
-    await VotingContract.connect(addr5).SupportCandidate("vote1", "proj2", textSend)
+        const textSend = {
+        value: ethers.utils.parseEther('0.01')
+        }
+        await VotingContract.connect(addr1).SupportCandidate("vote1", "proj1", textSend)
+        await VotingContract.connect(addr2).SupportCandidate("vote1", "proj2", textSend)
+        await VotingContract.connect(addr3).SupportCandidate("vote1", "proj3", textSend)
+        await VotingContract.connect(addr4).SupportCandidate("vote1", "proj2", textSend)
+        await VotingContract.connect(addr5).SupportCandidate("vote1", "proj2", textSend)
 
-    await network.provider.send("evm_increaseTime", [259200])
+        await network.provider.send("evm_increaseTime", [259200])
 
-    await VotingContract.connect(addr5).finishVote('vote1') 
-    
+        await VotingContract.connect(addr5).finishVote('vote1') 
+        
 
-    const INFrom = await VotingContract.connect(owner).getWinnerinform('vote1')
-    expect(ethers.utils.formatEther(INFrom[1])).to.be.equal('0.045')
-    expect(INFrom[0]).to.be.equal('proj2')
-  });
+        const INFrom = await VotingContract.connect(owner).getWinnerinform('vote1')
+        expect(ethers.utils.formatEther(INFrom[1])).to.be.equal('0.045')
+        expect(INFrom[0]).to.be.equal('proj2')
+    });
+    it("Shouldnt return correct information about Winner", async function () {
+        await VotingContract.connect(owner).CreateVoting('vote1', "Networks cup");
+        
+        const v1 = await VotingContract.connect(owner).CreateCandidate('vote1', "proj1", "Test project information", addr5.address);
+        const v2 =await VotingContract.connect(owner).CreateCandidate('vote1', "proj2", "2 Test project information", addr6.address);
+        const v3 =await VotingContract.connect(owner).CreateCandidate('vote1', "proj3", "3 Test project information", addr7.address);
+
+        const textSend = {
+        value: ethers.utils.parseEther('0.01')
+        }
+        await VotingContract.connect(addr1).SupportCandidate("vote1", "proj1", textSend)
+        await VotingContract.connect(addr2).SupportCandidate("vote1", "proj2", textSend)
+        await VotingContract.connect(addr3).SupportCandidate("vote1", "proj3", textSend)
+        await VotingContract.connect(addr4).SupportCandidate("vote1", "proj2", textSend)
+        await VotingContract.connect(addr5).SupportCandidate("vote1", "proj2", textSend)
+
+        await network.provider.send("evm_increaseTime", [259200])
+
+ 
+        const INFrom = await VotingContract.connect(owner).getWinnerinform('vote1')
+        expect(ethers.utils.formatEther(INFrom[1])).to.be.equal('0.03')
+        expect(INFrom[0]).to.be.equal('proj2')
+    });
 });
 });

@@ -88,14 +88,15 @@ contract VotingContract {
     }
     function GetInformationAboutVoting(string memory _VotingName)
         public view
-        returns (string[] memory _CandidatesName, string[] memory _CandidatesInformation, uint[] memory _SupportAmount , uint deadline)
+        returns (string[] memory _CandidatesName, string[] memory _CandidatesInformation, uint[] memory _SupportAmount , uint _deadline , string memory _VotingComment)
     {   
         VotingInformation storage V = Voting_Name_Information[_VotingName];
         _CandidatesName = V.CandidatesNames;
         _CandidatesInformation = V.CandidatesInformation;
         _SupportAmount = V.CandidatesSupportSum;
-        deadline = V.VotingDeadline;
-        return(_CandidatesName,_CandidatesInformation, _SupportAmount, deadline);
+        _deadline = V.VotingDeadline;
+        _VotingComment = V.VotingComment;
+        return(_CandidatesName,_CandidatesInformation, _SupportAmount, _deadline, _VotingComment);
     }
     function SupportCandidate(string memory _VotingName, string memory _CandidateName)
         public 
@@ -159,7 +160,13 @@ contract VotingContract {
     {
         VotingInformation storage V = Voting_Name_Information[_VotingName];
         Winner = V.WiningCandidateName;
+        if(VotingStatus[_VotingName] == true){
+             Sumwin = V.WiningCandidateamount;
+        }
+        else 
+        {
         Sumwin = V.TotalSupportSum;
+        }
         return (Winner, Sumwin);
     }
 }

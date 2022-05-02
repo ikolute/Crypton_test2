@@ -1,6 +1,6 @@
 require("@nomiclabs/hardhat-ethers");
 const { AlchemyWebSocketProvider } = require("@ethersproject/providers");
-const contractADR = "0x6dE7f664151A3d83a27aD110C21c14044Aca57eD"
+const contractADR = "0x0Ae04567D8377bC2De08c976597e52Bba3135d02"
 const DonatArtifact = require('../artifacts/contracts/VotingContract.sol/VotingContract.json');
 const { Contract } = require("ethers");
 const { types } = require("hardhat/config");
@@ -109,8 +109,10 @@ task("getinformationaboutvoting", "Return information about Candidates")
         const signer = new ethers.Wallet(key, provider);
         const VotingContract = new ethers.Contract(contractADR, DonatArtifact.abi, signer);
 
-        const [_CandidatesName,_CandidatesInformation, _SupportAmount, deadline] = await VotingContract.GetInformationAboutVoting(getinformationaboutvoting.votingname)
-           
+        const [_CandidatesName,_CandidatesInformation, _SupportAmount, deadline, _VotingComment] = await VotingContract.GetInformationAboutVoting(getinformationaboutvoting.votingname)
+        console.log(`
+                Information about Voting - ${_VotingComment}
+                 `)
         for (i=0;i<_CandidatesName.length; i++){
             console.log(`
                 Candidate name - ${_CandidatesName[i]}
